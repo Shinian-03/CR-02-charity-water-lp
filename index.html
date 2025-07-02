@@ -1,47 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Landing Page</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nomadiq Travel Destinations</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- CSS RESET ---------- */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ---------- ROOT VARIABLES ---------- */
+    :root {
+      --clr-primary: #2e8b57; /* Sea Green */
+      --clr-secondary: #f4fbea; /* Light Mint */
+      --clr-accent: #f9a826; /* Warm Sun */
+      --clr-dark: #1f4037;   /* Forest Green */
+
+      --fs-xl: clamp(1.75rem, 4vw + 1rem, 3rem);
+      --fs-lg: 1.25rem;
+      --fs-base: 1rem;
+    }
+
+    body {
+      font-family: 'Open Sans', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--clr-dark);
+      background-color: #ffffff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ---------- HEADER & NAV ---------- */
+    header {
+      background-color: var(--clr-secondary);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 4px solid var(--clr-primary);
+    }
+
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--clr-primary);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    nav li a {
+      font-weight: 600;
+      position: relative;
+    }
+
+    nav li a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background: var(--clr-primary);
+      transition: width 250ms ease-in-out;
+    }
+
+    nav li a:hover::after {
+      width: 100%;
+    }
+
+    /* ---------- HERO SECTION ---------- */
+    .hero {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1500&q=80');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      text-align: center;
+      padding: 6rem 1rem 7rem;
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: var(--fs-xl);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: var(--fs-lg);
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 999px;
+      background-color: var(--clr-accent);
+      color: #ffffff;
+      font-weight: 700;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ---------- ABOUT SECTION ---------- */
+    .about {
+      padding: 4rem 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--clr-primary);
+    }
+
+    .about p {
+      font-size: var(--fs-base);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ---------- CTA SECTION ---------- */
+    .cta {
+      background-color: var(--clr-primary);
+      color: #fff;
+      text-align: center;
+      padding: 3.5rem 1rem;
+    }
+
+    .cta h3 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background-color: var(--clr-secondary);
+      text-align: center;
+      font-size: 0.875rem;
+      padding: 1rem;
+      color: var(--clr-dark);
+    }
+
+    /* ---------- MEDIA QUERIES ---------- */
+    @media (min-width: 600px) {
+      .hero {
+        padding: 8rem 1rem 9rem;
+      }
+      .hero h1 {
+        font-size: calc(var(--fs-xl) + 1rem);
+      }
+      .about {
+        padding: 5rem 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
-    <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">Nomadiq Travel</div>
+    <nav aria-label="Main Navigation">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>
-         
-    </section>
+  <!-- ===== HERO ===== -->
+  <section class="hero" role="banner">
+    <h1>Eco‑Friendly Adventures Await</h1>
+    <p>Explore the world sustainably with Nomadiq Travel Destinations.</p>
+    <a href="#contact" class="btn">Plan Your Trip</a>
+  </section>
 
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
-        </div>
-    </section>
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="about">
+    <h2>About Nomadiq Travel Destinations</h2>
+    <p>
+      Nomadiq is an eco‑conscious travel agency dedicated to curating authentic and responsible journeys. 
+      We partner with local communities, prioritize low‑impact transportation, and invest in conservation
+      initiatives to ensure every adventure leaves the planet better than we found it.
+    </p>
+    <p>
+      Whether you're dreaming of trekking through lush rainforests, cycling along coastal routes, or 
+      immersing yourself in cultural heritage sites, our expert guides craft itineraries that respect 
+      natural environments and celebrate the people who call them home.
+    </p>
+  </section>
 
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
-        <a href="#" class="donate-button">Donate Now</a>
-    </section>
+  <!-- ===== CTA ===== -->
+  <section class="cta">
+    <h3>Ready to Travel Sustainably?</h3>
+    <a href="#contact" class="btn" style="background-color:#ffffff; color:var(--clr-primary);">Get in Touch</a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    &copy; 2025 Nomadiq Travel Destinations. All Rights Reserved.
+  </footer>
+
 </body>
 </html>
