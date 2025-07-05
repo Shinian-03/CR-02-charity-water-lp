@@ -1,229 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nomadiq Travel Destinations</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clean Water – Landing Page</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+
   <style>
-    /* ---------- CSS RESET ---------- */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /***************************
+      RESET & ROOT
+    ***************************/
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ---------- ROOT VARIABLES ---------- */
     :root {
-      --clr-primary: #2e8b57; /* Sea Green */
-      --clr-secondary: #f4fbea; /* Light Mint */
-      --clr-accent: #f9a826; /* Warm Sun */
-      --clr-dark: #1f4037;   /* Forest Green */
-
-      --fs-xl: clamp(1.75rem, 4vw + 1rem, 3rem);
-      --fs-lg: 1.25rem;
-      --fs-base: 1rem;
+      --yellow: #f7ff4d;
+      --blue: #41b4ff;
+      --blue-dark: #2f9ee6;
+      --text-dark: #222;
+      --text-light: #fff;
+      --radius: 8px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Open Sans', Arial, sans-serif;
+      font-family: 'Ubuntu', sans-serif;
+      color: var(--text-dark);
       line-height: 1.6;
-      color: var(--clr-dark);
-      background-color: #ffffff;
+      background: #fff;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    /***************************
+      ANIMATIONS & UTILITIES
+    ***************************/
+    @keyframes fadeInUp { 0%{opacity:0;transform:translateY(30px);} 100%{opacity:1;transform:translateY(0);} }
+    .animate { animation: fadeInUp .8s cubic-bezier(.25,.8,.25,1) .15s both; }
 
-    /* ---------- HEADER & NAV ---------- */
-    header {
-      background-color: var(--clr-secondary);
-      padding: 1rem 1.5rem;
+    @keyframes zoomIn { 0%{opacity:0;transform:scale(.9);} 100%{opacity:1;transform:scale(1);} }
+    .zoom-in { animation: zoomIn .6s ease-out both; }
+
+    /***************************
+      NAVBAR
+    ***************************/
+    nav {
+      background: var(--yellow);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: 4px solid var(--clr-primary);
+      justify-content: space-between;
+      padding-inline: clamp(1rem,4vw,6%);
+      height: 80px; /* bigger nav bar for larger logo */
+      position: sticky; top: 0; z-index: 1000;
+      transition: box-shadow .3s ease;
     }
 
-    .logo {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--clr-primary);
-    }
+    body.scrolled nav { box-shadow: var(--shadow); }
 
-    nav ul {
-      list-style: none;
+    .logo { display:flex; align-items:center; gap:1rem; color:var(--blue); }
+
+    .logo img {
+      width: 186px;  /* bigger logo image */
+      height: 186px;
+      object-fit: contain;
+      transition: transform .4s ease;
+    }
+    .logo:hover img { transform: rotate(-6deg) scale(1.05); }
+
+    .nav-btn {
+      background: var(--blue);
+      color: var(--text-light);
+      border: none;
+      padding: .75rem 1.8rem;
+      font-size: 1rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .nav-btn:hover { transform: translateY(-2px) scale(1.04); box-shadow: var(--shadow); background: var(--blue-dark); }
+
+    /***************************
+      HERO SECTION
+    ***************************/
+    .hero {
       display: flex;
-      gap: 1.25rem;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      padding: clamp(3rem,9vw,5rem) clamp(1.2rem,6vw,6%);
     }
 
-    nav li a {
-      font-weight: 600;
+    .hero-text {
+      flex: 1 1 480px;
+      background: var(--blue);
+      color: var(--text-light);
+      padding: clamp(2rem,5vw,4rem) clamp(1.5rem,4vw,5rem) clamp(3rem,6vw,5rem);
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    nav li a::after {
+    .hero-text::after {
       content: "";
       position: absolute;
-      width: 0%;
-      height: 2px;
+      bottom: -60px;
       left: 0;
-      bottom: -4px;
-      background: var(--clr-primary);
-      transition: width 250ms ease-in-out;
-    }
-
-    nav li a:hover::after {
       width: 100%;
+      height: 60px;
+      background: var(--blue);
+      transform: skewY(-6deg);
+      transform-origin: 0 0;
     }
 
-    /* ---------- HERO SECTION ---------- */
-    .hero {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1500&q=80');
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-      text-align: center;
-      padding: 6rem 1rem 7rem;
+    .hero h1 { font-size: clamp(2.6rem,5.5vw,4.2rem); font-weight:700; line-height:1.1; margin-bottom:1.8rem; max-width:18ch; }
+    .hero p  { font-size: clamp(1rem,2.2vw,1.2rem); margin-bottom:2.3rem; max-width:46ch; }
+
+    .cta { display:flex; align-items:stretch; border-radius:var(--radius); overflow:hidden; background:var(--yellow); max-width:420px; box-shadow: var(--shadow); }
+    .cta input { flex:1; border:none; padding:1rem 1.2rem; font-size:1rem; background:transparent; color:var(--text-dark); }
+    .cta input:focus { outline:none; background:rgba(255,255,255,0.4); }
+
+    .cta button { border:none; background:var(--blue); color:var(--text-light); padding:0 2rem; font-size:1rem; cursor:pointer; transition:background .25s ease, transform .25s ease; }
+    .cta button:hover { background:var(--blue-dark); transform:scale(1.05); }
+
+    /***************************
+      HERO IMAGE
+    ***************************/
+    .hero-image { flex:0 0 clamp(260px,42vw,320px); max-width:100%; margin-left:auto; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow); }
+    .hero-image img { width:100%; height:auto; object-fit:cover; object-position:center; display:block; transition:transform .6s ease; }
+    .hero-image:hover img { transform:scale(1.08) rotate(.3deg); }
+
+    /***************************
+      RESPONSIVE BREAKPOINTS
+    ***************************/
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; padding-bottom:0; }
+      nav { height: 70px; }
+      .logo img { width:64px; height:64px; }
     }
 
-    .hero h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: var(--fs-xl);
-      margin-bottom: 0.5rem;
-    }
+    @media (min-width:1200px) { .hero-text { padding:5rem 6rem 6rem; } }
 
-    .hero p {
-      font-size: var(--fs-lg);
-      margin-bottom: 2rem;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 2rem;
-      border-radius: 999px;
-      background-color: var(--clr-accent);
-      color: #ffffff;
-      font-weight: 700;
-      transition: transform 200ms ease, box-shadow 200ms ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-    }
-
-    /* ---------- ABOUT SECTION ---------- */
-    .about {
-      padding: 4rem 1rem;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .about h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: var(--clr-primary);
-    }
-
-    .about p {
-      font-size: var(--fs-base);
-      margin-bottom: 1.5rem;
-    }
-
-    /* ---------- CTA SECTION ---------- */
-    .cta {
-      background-color: var(--clr-primary);
-      color: #fff;
-      text-align: center;
-      padding: 3.5rem 1rem;
-    }
-
-    .cta h3 {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-    }
-
-    /* ---------- FOOTER ---------- */
-    footer {
-      background-color: var(--clr-secondary);
-      text-align: center;
-      font-size: 0.875rem;
-      padding: 1rem;
-      color: var(--clr-dark);
-    }
-
-    /* ---------- MEDIA QUERIES ---------- */
-    @media (min-width: 600px) {
-      .hero {
-        padding: 8rem 1rem 9rem;
-      }
-      .hero h1 {
-        font-size: calc(var(--fs-xl) + 1rem);
-      }
-      .about {
-        padding: 5rem 2rem;
-      }
-    }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation:none !important; transition:none !important; } }
   </style>
 </head>
 <body>
-  <!-- ===== HEADER ===== -->
-  <header>
-    <div class="logo">Nomadiq Travel</div>
-    <nav aria-label="Main Navigation">
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#destinations">Destinations</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- NAV BAR -->
+  <nav class="animate">
+    <a href="#" class="logo">
+      <img src="https://d11sa1anfvm2xk.cloudfront.net/media/downloads/logos/cw_horizontal_white.jpg" alt="Logo" />
+    </a>
+    <button class="nav-btn">Water</button>
+  </nav>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" role="banner">
-    <h1>Eco‑Friendly Adventures Await</h1>
-    <p>Explore the world sustainably with Nomadiq Travel Destinations.</p>
-    <a href="#contact" class="btn">Plan Your Trip</a>
+  <!-- HERO SECTION -->
+  <section class="hero animate">
+    <div class="hero-text zoom-in">
+      <h1>Let kindness become clean water</h1>
+      <p>Your donation will bring safe drinking water to real people—and you’ll see exactly where every dollar goes.</p>
+
+      <form class="cta" onsubmit="event.preventDefault(); alert('Thank you for your generosity!');">
+        <input type="text" placeholder="Share a note of goodwill" aria-label="Donation note" />
+        <button type="submit">Donate</button>
+      </form>
+    </div>
+
+    <div class="hero-image zoom-in">
+      <img src="https://charitywater.dropmark.com/993072/26804715.jpg" alt="Woman carrying water" />
+    </div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
-  <section id="about" class="about">
-    <h2>About Nomadiq Travel Destinations</h2>
-    <p>
-      Nomadiq is an eco‑conscious travel agency dedicated to curating authentic and responsible journeys. 
-      We partner with local communities, prioritize low‑impact transportation, and invest in conservation
-      initiatives to ensure every adventure leaves the planet better than we found it.
-    </p>
-    <p>
-      Whether you're dreaming of trekking through lush rainforests, cycling along coastal routes, or 
-      immersing yourself in cultural heritage sites, our expert guides craft itineraries that respect 
-      natural environments and celebrate the people who call them home.
-    </p>
-  </section>
-
-  <!-- ===== CTA ===== -->
-  <section class="cta">
-    <h3>Ready to Travel Sustainably?</h3>
-    <a href="#contact" class="btn" style="background-color:#ffffff; color:var(--clr-primary);">Get in Touch</a>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    &copy; 2025 Nomadiq Travel Destinations. All Rights Reserved.
-  </footer>
-
+  <script>
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      document.body.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
 </body>
 </html>
